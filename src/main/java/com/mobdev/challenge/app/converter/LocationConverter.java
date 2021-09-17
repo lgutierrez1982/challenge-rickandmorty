@@ -9,6 +9,7 @@ public class LocationConverter extends AbstractConverter<LocationEntity, Locatio
 	
 	@Override
 	public LocationEntity fromDto(LocationDto dto) {
+		//NO IMPL
 		return null;
 	}
 	
@@ -21,7 +22,7 @@ public class LocationConverter extends AbstractConverter<LocationEntity, Locatio
 		locationDto.setUrl(entity.getUrl());
 		locationDto.setDimension(entity.getDimension());
 		
-		// Prevent NullPointerException
+		//Prevent NullPointerException
 		if(entity.getResidents()!=null) {
 			locationDto.setResidents(entity.getResidents().stream().collect(Collectors.toList()));
 		}

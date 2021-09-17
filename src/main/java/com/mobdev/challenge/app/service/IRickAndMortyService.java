@@ -7,10 +7,8 @@ import com.mobdev.challenge.app.entity.LocationEntity;
 
 public interface IRickAndMortyService {
 	
-	public Optional<CharacterEntity> getCharacterById(Integer id);
+	public Optional<CharacterEntity> findCharacterById(Integer id);
 	
-	public Optional<LocationEntity> getLocationById(String url);
-	
-	public Optional<CharacterEntity> getCharacterChallengeById(Integer id);
+	public Optional<LocationEntity> findLocationById(String url);
 
 }

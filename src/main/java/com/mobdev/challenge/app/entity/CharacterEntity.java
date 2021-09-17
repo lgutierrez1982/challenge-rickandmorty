@@ -121,12 +121,12 @@ public class CharacterEntity {
 	}
 
 	@JsonProperty("url")
-	public String getURL() {
+	public String getUrl() {
 		return url;
 	}
 
 	@JsonProperty("url")
-	public void setURL(String value) {
+	public void setUrl(String value) {
 		this.url = value;
 	}
 
