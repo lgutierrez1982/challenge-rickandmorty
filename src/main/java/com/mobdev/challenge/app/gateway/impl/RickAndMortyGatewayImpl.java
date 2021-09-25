@@ -1,8 +1,7 @@
 package com.mobdev.challenge.app.gateway.impl;
 
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
@@ -22,18 +21,16 @@ public class RickAndMortyGatewayImpl implements IRickAndMortyGateway{
 	
 	
 	@Override
-	public Optional<CharacterEntity> findCharacterById(Integer id) {
+	public ResponseEntity<CharacterEntity> findCharacterById(Integer id) {
 		
-		return Optional.ofNullable(restTemplate.getForObject(endpointUrl.getCharacterById() + "{id}", 
-								   							 CharacterEntity.class, 
-								   							 id));
-			
+		return restTemplate.getForEntity(endpointUrl.getCharacterById() + "{id}", CharacterEntity.class, id);
+		
 	}
 	
 	@Override
-	public Optional<LocationEntity> findLocationById(String url) {
+	public ResponseEntity<LocationEntity> findLocationById(String url) {
 		
-		return Optional.ofNullable(restTemplate.getForObject(url, LocationEntity.class));
+		return restTemplate.getForEntity(url, LocationEntity.class);
 			
 	}
 

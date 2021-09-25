@@ -1,14 +1,11 @@
 package com.mobdev.challenge.app.service;
 
-import java.util.Optional;
-
-import com.mobdev.challenge.app.entity.CharacterEntity;
-import com.mobdev.challenge.app.entity.LocationEntity;
+import com.mobdev.challenge.app.dto.CharacterDto;
+import com.mobdev.challenge.app.dto.LocationDto;
 
 public interface IRickAndMortyService {
 	
-	public Optional<CharacterEntity> findCharacterById(Integer id);
+	public CharacterDto findCharacterById(Integer id);
 	
-	public Optional<LocationEntity> findLocationById(String url);
 
 }

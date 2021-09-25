@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.mobdev.challenge.app</groupId>
-	<artifactId>mobdev-challenge</artifactId>
+	<artifactId>mobdev-challenge-improvement</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>mobdev-challenge</name>
 	<description>Demo projecto for interview</description>

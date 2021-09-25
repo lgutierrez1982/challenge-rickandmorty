@@ -1,14 +1,14 @@
 package com.mobdev.challenge.app.gateway;
 
-import java.util.Optional;
+import org.springframework.http.ResponseEntity;
 
 import com.mobdev.challenge.app.entity.CharacterEntity;
 import com.mobdev.challenge.app.entity.LocationEntity;
 
 public interface IRickAndMortyGateway {
 	
-	Optional<CharacterEntity> findCharacterById(Integer id);
+	ResponseEntity<CharacterEntity> findCharacterById(Integer id);
 
-	Optional<LocationEntity> findLocationById(String url);
+	ResponseEntity<LocationEntity> findLocationById(String url);
 
 }

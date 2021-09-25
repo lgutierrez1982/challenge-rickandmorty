@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.http.ResponseEntity;
 
 import com.mobdev.challenge.app.entity.CharacterEntity;
 import com.mobdev.challenge.app.entity.LocationEntity;
@@ -18,13 +19,13 @@ public class RickAndMortyGatewayImplTest {
 	
 	@Test
 	public void findCharacterById() {
-		CharacterEntity response =  client.getForObject("https://rickandmortyapi.com/api/character/{id}", CharacterEntity.class, 1);
+		ResponseEntity<CharacterEntity> response = client.getForEntity("https://rickandmortyapi.com/api/character/{id}", CharacterEntity.class, 1);
 		assertNotNull(response);
 	}
 	
 	@Test
 	public void findLocationById() {
-		LocationEntity response =  client.getForObject("https://rickandmortyapi.com/api/location/1", LocationEntity.class);
+		ResponseEntity<LocationEntity> response = client.getForEntity("https://rickandmortyapi.com/api/location/1", LocationEntity.class);
 		assertNotNull(response);
 	}
 }

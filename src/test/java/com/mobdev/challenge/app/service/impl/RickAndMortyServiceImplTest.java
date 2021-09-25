@@ -1,16 +1,19 @@
 package com.mobdev.challenge.app.service.impl;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.mockito.ArgumentMatchers.anyInt;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 
 import java.time.LocalDateTime;
-import java.util.Optional;
+import java.util.ArrayList;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.http.ResponseEntity;
 
 import com.mobdev.challenge.app.entity.CharacterEntity;
 import com.mobdev.challenge.app.entity.LocationEntity;
@@ -25,43 +28,40 @@ public class RickAndMortyServiceImplTest {
 	@InjectMocks
 	private RickAndMortyServiceImpl rickAndMortyServiceImpl;
 	
-	private Optional<CharacterEntity> optionalCharacterEntity;
+	private CharacterEntity characterEntity;
 	
-	private Optional<LocationEntity> optionalLocationEntityEntity;
+	private LocationEntity locationEntity;
 	
 	@BeforeEach
 	void setup() {
 		
 		MockitoAnnotations.openMocks(this);
 
-		CharacterEntity characterEntity = new CharacterEntity();
+		characterEntity = new CharacterEntity();
 		characterEntity.setId(1);
 		characterEntity.setName("Rick");
 		characterEntity.setSpecies("species");
-		optionalCharacterEntity = Optional.of(characterEntity);
+		characterEntity.setEpisode(new ArrayList<String>());
 		
-		LocationEntity locationEntity = new LocationEntity();
+		
+		locationEntity = new LocationEntity();
 		locationEntity.setName("Earth");
 		locationEntity.setDimension("Unknow dimension");
 		locationEntity.setCreated(LocalDateTime.now());
-		optionalLocationEntityEntity = Optional.of(locationEntity);
+		locationEntity.setUrl("https://rickandmortyapi.com/api/location/1");
+		
+		characterEntity.setOrigin(locationEntity);
+		
 	
 	}
 	
 	@Test
 	public void findCharacterById() {
 		
-		when(iRickAndMortyGateway.findCharacterById(1)).thenReturn(optionalCharacterEntity);
+		when(iRickAndMortyGateway.findLocationById(anyString())).thenReturn(ResponseEntity.status(200).body(locationEntity));
+		when(iRickAndMortyGateway.findCharacterById(anyInt())).thenReturn(ResponseEntity.status(200).body(characterEntity));
+		
 		assertNotNull(rickAndMortyServiceImpl.findCharacterById(1));
-		
-	}
-	
-	@Test
-	public void findLocationById() {
-		
-		when(iRickAndMortyGateway.findLocationById("https://rickandmortyapi.com/api/location/1"))
-				.thenReturn(optionalLocationEntityEntity);
-		assertNotNull(rickAndMortyServiceImpl.findLocationById("https://rickandmortyapi.com/api/location/1"));
 		
 	}
 
